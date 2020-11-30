@@ -50,20 +50,43 @@ public class DAO {
     /**
      * ensemble des différents produits commandés
      */
+    /*
     public Set<Produit> produits() {
         return commandes.stream()
                 .flatMap(c -> c.lignes().stream())
                 .map(Paire::fst)
                 .collect(Collectors.toSet());
     }
+    */
+    public Set<Produit> produits() {
+        Set<Produit> rtr = new HashSet<>();
+        for (Commande commande : this.commandes) {
+            for (Paire<Produit, Integer> ligne : commande.lignes()) {
+                rtr.add(ligne.fst());
+            }
+        }
+        return rtr;
+    }
 
     /**
      * liste des commandes vérifiant un prédicat
      */
-    public List<Commande> selectionCommande(Predicate<Commande> p) {
-        return commandes.stream()
+    /* public List<Commande> selectionCommande(Predicate<Commande> p) {
+       return commandes.stream()
             .filter(p)
             .collect(Collectors.toList());
+
+
+    }*/
+
+    public List<Commande> selectionCommande (Predicate<Commande> p){
+        List<Commande> selecCo = new ArrayList<>();
+        for(Commande c : commandes) {
+            if (p.test(c)) {
+                selecCo.add(c);
+            }
+        }
+        return selecCo;
     }
 
     /**
@@ -74,6 +97,16 @@ public class DAO {
             .filter(c -> c.lignes().stream().anyMatch(p))
             .collect(Collectors.toList());
     }
+    public Set<Produit> selectionCommandeSurExistanceLigne(Predicate<Paire<Produit,Integer>> p) {
+        List<Commande> selecCo = new ArrayList<>();
+        for(Commande p : Commande()) {
+            if(condition.test(p)) {
+                selecCo.add(p);
+            }
+        }
+        return selecCo;
+    }
+
 
     /**
      * ensemble des différents produits commandés vérifiant un prédicat
@@ -84,5 +117,8 @@ public class DAO {
             .filter(p)
             .collect(Collectors.toSet());
     }
+
+
+
 
 }
