@@ -19,11 +19,17 @@ import td2.universite.UE;
 public class App {
 /* EXERCICES DU TD3 */
 // matières d'une année
-public static final Function<Annee, Stream<Matiere>> matieresA = ???
+public static final Function<Annee, Stream<Matiere>> matieresA = annee ->
+        annee.ues().stream()
+        .flatMap(ue -> ue.ects().keySet().stream());
     // matières d'un étudiant
-    public static final Function<Etudiant, Stream<Matiere>> matieresE = ???
+    public static final Function<Etudiant, Stream<Matiere>> matieresE = etudiant ->
+            matieresA.apply(annee)
+            .flatMap(ue -> ue.ects().keySet().stream());
     // matières coefficientées d'un étudiant (version Entry)
-    public static final Function<Etudiant, Stream<Entry<Matiere, Integer>>> matieresCoefE_ = ???
+    public static final Function<Etudiant, Stream<Entry<Matiere, Integer>>> matieresCoefE_ = matiere ->
+            Map<Etudiant, Matiere> rtr = new HashMap<>();
+    matiere.matieresCoefE_()
     // transformation d'une Entry en une Paire
     public static final Function<Entry<Matiere, Integer>, Paire<Matiere, Integer>> entry2paire = ???
     // matières coefficientées d'un étudiant (version Paire)

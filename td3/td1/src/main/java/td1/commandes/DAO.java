@@ -118,7 +118,94 @@ public class DAO {
             .collect(Collectors.toSet());
     }
 
+//  TD1 EXO4
+// [Masques, Gel]
 
+public static void q1(){
+    DAO db = DAO.instance();
+    Set<Produit> v1 = db.selectionProduits(produitaTVAReduite);
+    System.out.println(v1);
+}
+// [Masques]
+private static void q2(){
+    DAO db = DAO.instance();
+    Set<Produit> v2 = db.selectionProduits(produitaTVAReduite.and(sup5Euros));
+    System.out.println(v2);
+}
+// [Commande
+//  Masques x2
+//  Gel x10
+//  Camembert x2
+//  Masques x3
+// ]
+private static void q3(){
+    DAO db = DAO.instance();
+    List<Commande> v3  = db.selectionCommande(doublon);
+    System.out.println(v3);
+
+}
+//non normalisé [Commande
+//  Masques x2
+//  Gel x10
+//  Camembert x2
+//  Masques x3
+//]
+private static void q4(){
+    DAO db = DAO.instance();
+     List<Commande> v4 = db.selectionCommandeSurExistanceLigne(
+            paire -> paireTVAReduite.
+                    and(genPredicate(2))
+                    .test(paire)
+    );
+    System.out.println(v4);
+
+}
+// Commande
+//+------------+------------+-----+------------+--------+------------+
+//+ nom + prix + qté + prix ht + tva + prix ttc +
+//+------------+------------+-----+------------+--------+------------+
+//+ Yaourts + 2,50 + 6 + 15,00 + 10,00% + 16,50 +
+//+ Camembert + 4,00 + 1 + 4,00 + 20,00% + 4,80 +
+//+------------+------------+-----+------------+--------+------------+
+//Total : 21,30
+//Commande
+//+------------+------------+-----+------------+--------+------------+
+//+ nom + prix + qté + prix ht + tva + prix ttc +
+//+------------+------------+-----+------------+--------+------------+
+//+ Camembert + 4,00 + 2 + 8,00 + 20,00% + 9,60 +
+//+ Masques + 25,00 + 5 + 125,00 + 5,50% + 131,88 +
+//+ Gel + 5,00 + 10 + 50,00 + 5,50% + 52,75 +
+//+------------+------------+-----+------------+--------+------------+
+//Total : 194,23
+private static void q5(){
+    DAO db = DAO.instance();
+     for (Commande cde : db.commandes()) {
+        cde.affiche(calcul1);
+    }
+}
+// Commande
+//+------------+------------+-----+------------+--------+------------+
+//+ nom + prix + qté + prix ht + tva + prix ttc +
+//+------------+------------+-----+------------+--------+------------+
+//+ Yaourts + 2,50 + 6 + 15,00 + 10,00% + 14,00 +
+//+ Camembert + 4,00 + 1 + 4,00 + 20,00% + 4,80 +
+//+------------+------------+-----+------------+--------+------------+
+//Total : 18,80
+//Commande
+//+------------+------------+-----+------------+--------+------------+
+//+ nom + prix + qté + prix ht + tva + prix ttc +
+//+------------+------------+-----+------------+--------+------------+
+//+ Camembert + 4,00 + 2 + 8,00 + 20,00% + 9,60 +
+//+ Masques + 25,00 + 5 + 125,00 + 5,50% + 106,88 +
+//+ Gel + 5,00 + 10 + 50,00 + 5,50% + 47,75 +
+//+------------+------------+-----+------------+--------+------------+
+//Total : 164,23
+private static void q6(){
+    DAO db = DAO.instance();
+     for (Commande cde : db.commandes()) {
+        cde.affiche(calcul2);
+    }
+ */
 
 
 }

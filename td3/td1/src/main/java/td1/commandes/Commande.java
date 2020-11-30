@@ -19,6 +19,15 @@ public class Commande {
         lignes.add(new Paire<>(p, q));
         return this;
     }
+    function formateurLigne(){
+        ArrayList<String> Ligne = new ArrayList<String>();
+        List<String> maListe =new ArrayList();
+        maListe.stream()
+                .sorted()
+                .forEach(System.out::println);
+    }
+
+
 
     public List<Paire<Produit, Integer>> lignes() {
         return lignes;
@@ -33,7 +42,6 @@ public class Commande {
         }
         return str.toString();
     }
-
     /**
      * cumule les lignes en fonction des produits
      */

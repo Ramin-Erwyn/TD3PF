@@ -5,6 +5,7 @@ donnez ici vos réponses au TD3, tout ce qui ne peut pas être mis directement s
 ## Exercice 1
 
 ### Question 1
+Nous pouvons faire un simplement un while 
 
 ### Question 2
 
