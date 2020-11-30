@@ -31,7 +31,10 @@ public static final Function<Annee, Stream<Matiere>> matieresA = annee ->
             Map<Etudiant, Matiere> rtr = new HashMap<>();
     matiere.matieresCoefE_()
     // transformation d'une Entry en une Paire
-    public static final Function<Entry<Matiere, Integer>, Paire<Matiere, Integer>> entry2paire = ???
+    public static final Function<Entry<Matiere, Integer>, Paire<Matiere, Integer>> entry2paire = matiere ->
+            pair.stream()
+                    .filtre(p)
+            .flatMap(paire->paire.entry.setKey.stream())
     // matières coefficientées d'un étudiant (version Paire)
     public static final Function<Etudiant, Stream<Paire<Matiere, Integer>>>  matieresCoefE = ???
     // accumulateur pour calcul de la moyenne
